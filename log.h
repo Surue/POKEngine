@@ -5,14 +5,19 @@
 
 namespace poke
 {
-namespace log {
-	static void Log(const std::string& s)
-	{
-		std::cout << s << "\n";
-	}
+namespace log
+{
+static void Log(const std::string& s)
+{
+	std::cout << s << "\n";
+}
+
+static void Clear()
+{
+	system("cls");
+}
 }
 }
 
-	
 
 #endif
