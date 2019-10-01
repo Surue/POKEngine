@@ -20,10 +20,7 @@ public:
 	void Render();
 	void Destroy();
 
-	void AddSystem(System *system);
-
 private:
-	std::vector<std::unique_ptr<System>> systems_;
 	TestSystem testSystem_;
 };
 }

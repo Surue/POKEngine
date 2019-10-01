@@ -23,6 +23,11 @@ void TestSystem::PhysicUpdate()
 	log::Log("TestSytem : PhysicUpdate");
 }
 
+void TestSystem::Render()
+{
+	log::Log("TestSytem : Render");
+}
+
 void TestSystem::Destroy()
 {
 	log::Log("TestSytem : Destroy");

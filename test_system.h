@@ -14,6 +14,7 @@ public:
 	void Init() override;
 	void Update() override;
 	void PhysicUpdate() override;
+	void Render() override;
 	void Destroy() override;
 };
 }

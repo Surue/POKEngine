@@ -1,7 +1,5 @@
 #include "system_container.h"
 
-#include "system.h"
-#include "Log.h"
 #include "test_system.h"
 
 namespace poke
@@ -37,10 +35,5 @@ void SystemContainer::Render()
 void SystemContainer::Destroy()
 {
 	testSystem_.Destroy();
-}
-
-void SystemContainer::AddSystem(System *system)
-{
-	systems_.push_back(std::make_unique<System>(*system));
 }
 }
