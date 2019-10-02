@@ -1,6 +1,8 @@
 #include "test_system.h"
 #include "Log.h"
 
+#include "windows.h" 
+
 namespace poke
 {
 TestSystem::TestSystem() { }

@@ -15,7 +15,7 @@ void Engine::Init()
 	log::Log("Engine Start()");
 
 	//Create basics systems
-	systemContainer_.Init();
+	moduleManager_.Init();
 }
 
 void Engine::Run()
@@ -34,13 +34,13 @@ void Engine::Run()
 		log::Log("Get Inputs");
 
 		log::Log("PhysicUpdate");
-		systemContainer_.PhysicUpdate();
+		mainThread_.emplace_back(&ModuleManager::PhysicUpdate, &moduleManager_);
 
 		log::Log("Update");
-		systemContainer_.Update();
+		mainThread_.emplace_back(&ModuleManager::Update, &moduleManager_);
 
 		log::Log("Render");
-		systemContainer_.Render();
+		drawThread_.emplace_back(&ModuleManager::Render, &moduleManager_);
 
 		iteration++;
 		if (iteration >= maxIteration)
@@ -48,6 +48,11 @@ void Engine::Run()
 			isRunning_ = false;
 		}
 
+		for (auto& th : mainThread_) th.join();
+		for (auto& th : drawThread_) th.join();
+
+		mainThread_.clear();
+		drawThread_.clear();
 		log::Clear();
 	}
 

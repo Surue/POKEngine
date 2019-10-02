@@ -1,6 +1,11 @@
 #pragma once
 
+
+#include <thread>
+
 #include "module_manager.h"
+#include <vector>
+
 
 namespace poke
 {
@@ -33,8 +38,10 @@ public:
 	 */
 	void Destroy();
 private:
+	std::vector<std::thread> mainThread_;
+	std::vector<std::thread> drawThread_;
 	bool isRunning_;
 
-	ModuleManager systemContainer_;
+	ModuleManager moduleManager_;
 };
 } //poke
