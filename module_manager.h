@@ -1,5 +1,4 @@
-#ifndef MODULE_MANAGER_H
-#define MODULE_MANAGER_H
+#pragma once
 
 #include "test_system.h"
 
@@ -24,16 +23,20 @@ public:
 	 */
 	void PhysicUpdate();
 	/**
-	 * \brief Part of the programme that draw every thing on the screen
+	 * \brief Part of the program that draw every thing on the screen
 	 */
 	void Render();
 	/**
-	 * \brief Called at the end of the programme to destroy 
+	 * \brief Called at the end of the program to destroy 
 	 */
 	void Destroy();
+
+	TestSystem& GetTestSystem()
+	{
+		return testSystem_;
+	}
 
 private:
 	TestSystem testSystem_;
 };
 } //poke
-#endif //MODULE_MANAGER_H

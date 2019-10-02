@@ -1,6 +1,4 @@
-#ifndef TEST_SYSTEM_H
-#define TEST_SYSTEM_H
-
+#pragma once
 #include "Module.h"
 
 namespace poke
@@ -18,4 +16,3 @@ public:
 	void Destroy() override;
 };
 }
-#endif //TEST_SYSTEM_H

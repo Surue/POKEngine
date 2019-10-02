@@ -1,5 +1,4 @@
-#ifndef MODULE_H
-#define MODULE_H
+#pragma once
 
 namespace poke
 {
@@ -7,7 +6,7 @@ class Module
 {
 public:
 	Module();
-	~Module();
+	virtual ~Module() = default;
 
 	/**
 	 * \brief Initialize the core module. Call only once
@@ -35,4 +34,3 @@ public:
 private:
 };
 }
-#endif //MODULE_H

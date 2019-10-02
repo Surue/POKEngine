@@ -1,5 +1,5 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#pragma once
+
 #include "module_manager.h"
 
 namespace poke
@@ -38,4 +38,3 @@ private:
 	ModuleManager systemContainer_;
 };
 } //poke
-#endif //ENGINE_H

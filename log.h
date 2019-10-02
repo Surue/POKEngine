@@ -1,5 +1,5 @@
-#ifndef LOG_H
-#define LOG_H
+#pragma once
+
 #include <string>
 #include <iostream>
 
@@ -15,7 +15,6 @@ static void Log(const std::string& s)
 {
 	std::cout << s << "\n";
 }
-
 /**
  * \brief Clear the console
  */
@@ -25,5 +24,3 @@ static void Clear()
 }
 } //namespace log
 } //namespace poke
-
-#endif // LOG_H
