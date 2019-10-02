@@ -1,11 +1,11 @@
 #ifndef TEST_SYSTEM_H
 #define TEST_SYSTEM_H
 
-#include "system.h"
+#include "Module.h"
 
 namespace poke
 {
-class TestSystem : public System
+class TestSystem : public Module
 {
 public:
 	TestSystem();

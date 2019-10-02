@@ -22,8 +22,9 @@ void Engine::Run()
 {
 	log::Log("Engine Run()");
 
-	int iteration = 0;
+	int iteration = 0; //TODO enlever ça
 	const int maxIteration = 1000;
+
 	isRunning_ = true;
 
 	while (isRunning_)
@@ -49,5 +50,14 @@ void Engine::Run()
 
 		log::Clear();
 	}
+
+	Destroy();
 }
+
+void Engine::ShutDown()
+{
+	isRunning_ = false;
+}
+
+void Engine::Destroy() { }
 }

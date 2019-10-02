@@ -118,15 +118,15 @@
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="system.cpp" />
-    <ClCompile Include="system_container.cpp" />
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="module_manager.cpp" />
     <ClCompile Include="test_system.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h" />
     <ClInclude Include="Log.h" />
-    <ClInclude Include="system.h" />
-    <ClInclude Include="system_container.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="module_manager.h" />
     <ClInclude Include="test_system.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
