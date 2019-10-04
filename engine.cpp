@@ -6,13 +6,14 @@ namespace poke
 Engine::Engine()
 {
 	log::Log("Engine - Construct");
-}
 
-Engine::~Engine() { }
+}
 
 void Engine::Init()
 {
 	log::Log("Engine Start()");
+
+	
 
 	//Create basics systems
 	moduleManager_.Init();
@@ -48,6 +49,7 @@ void Engine::Run()
 			isRunning_ = false;
 		}
 
+		//Wait end of frame
 		for (auto& th : mainThread_) th.join();
 		for (auto& th : drawThread_) th.join();
 

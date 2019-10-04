@@ -1,6 +1,7 @@
 #include "module_manager.h"
 
 #include "test_system.h"
+#include "singleton.h"
 
 namespace poke
 {
@@ -19,7 +20,7 @@ void ModuleManager::Init()
 
 void ModuleManager::Update()
 {
-	testSystem_.Update();
+	Singleton::Get()->Update();
 }
 
 void ModuleManager::PhysicUpdate()

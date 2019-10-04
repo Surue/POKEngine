@@ -1,11 +1,13 @@
 #include "test_system.h"
 #include "Log.h"
-
-#include "windows.h" 
+#include "singleton.h"
 
 namespace poke
 {
-TestSystem::TestSystem() { }
+TestSystem::TestSystem()
+{
+	Singleton::Get()->AddCallbacks([this]() {return this->Update(); });
+}
 
 
 TestSystem::~TestSystem() { }

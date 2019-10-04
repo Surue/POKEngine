@@ -4,7 +4,10 @@
 
 namespace poke
 {
-Module::Module() { }
+Module::Module()
+{
+	
+}
 
 
 void Module::Test()

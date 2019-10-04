@@ -16,7 +16,7 @@ class Engine
 {
 public:	
 	Engine();
-	~Engine();
+	~Engine() = default;
 
 	/**
 	 * \brief Called once to initialize the engine and cores module
