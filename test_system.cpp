@@ -2,6 +2,8 @@
 #include "Log.h"
 #include "engine.h"
 
+#include "cassert.h"
+
 namespace poke
 {
 TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
@@ -12,6 +14,10 @@ TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
 	moduleManager->renderCallback.AddCallback([this]() {return this->Render(); });
 
 	moduleManager->updateCallback.RemoveCallback([this]() {return this->Update(); });
+
+	int a = 0, b = 1;
+
+	cassert(a > b, "A is inferior to be");
 }
 
 TestSystem::~TestSystem() { }
