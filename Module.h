@@ -2,10 +2,12 @@
 
 namespace poke
 {
+class ModuleManager;
+
 class Module
 {
 public:
-	Module();
+	Module(ModuleManager* moduleManager);
 	virtual ~Module() = default;
 
 	/**
@@ -32,5 +34,7 @@ public:
 	void Test();
 
 private:
+	//Force module and daughter class to use constructor with module manager
+	Module(){};
 };
 }

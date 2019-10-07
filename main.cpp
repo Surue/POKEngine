@@ -6,7 +6,6 @@
 
 int main()
 {
-	poke::Engine engine;
 
 	/*for(int i = 0; i < 100; i++)
 	{
@@ -15,8 +14,9 @@ int main()
 		system("cls");
 	}*/
 
-	engine.Init();
+	poke::Engine& engine = poke::Engine::Get();
 
+	engine.Init();
 	engine.Run();
 
 	system("pause");

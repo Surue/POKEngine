@@ -6,17 +6,21 @@ namespace poke
 Engine::Engine()
 {
 	log::Log("Engine - Construct");
+}
 
+Engine& Engine::Get()
+{
+	static auto instance = std::make_unique<Engine>();
+	return *instance;
 }
 
 void Engine::Init()
 {
 	log::Log("Engine Start()");
 
-	
-
 	//Create basics systems
 	moduleManager_.Init();
+	log::Log("Engine Start() =========");
 }
 
 void Engine::Run()
@@ -35,13 +39,13 @@ void Engine::Run()
 		log::Log("Get Inputs");
 
 		log::Log("PhysicUpdate");
-		mainThread_.emplace_back(&ModuleManager::PhysicUpdate, &moduleManager_);
+		mainThread_.emplace_back(&ModuleManager::PhysicUpdate, moduleManager_);
 
 		log::Log("Update");
-		mainThread_.emplace_back(&ModuleManager::Update, &moduleManager_);
+		mainThread_.emplace_back(&ModuleManager::Update, moduleManager_);
 
 		log::Log("Render");
-		drawThread_.emplace_back(&ModuleManager::Render, &moduleManager_);
+		drawThread_.emplace_back(&ModuleManager::Render, moduleManager_);
 
 		iteration++;
 		if (iteration >= maxIteration)
@@ -67,4 +71,9 @@ void Engine::ShutDown()
 }
 
 void Engine::Destroy() { }
+
+ModuleManager& Engine::GetModuleManager()
+{
+	return moduleManager_;
+}
 }

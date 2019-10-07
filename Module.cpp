@@ -1,10 +1,11 @@
 #include "Module.h"
 #include <iostream>
+#include "module_manager.h"
 
 
 namespace poke
 {
-Module::Module()
+Module::Module(ModuleManager* moduleManager)
 {
 	
 }

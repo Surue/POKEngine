@@ -1,14 +1,16 @@
 #include "test_system.h"
 #include "Log.h"
-#include "singleton.h"
+#include "engine.h"
 
 namespace poke
 {
-TestSystem::TestSystem()
+TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
 {
-	Singleton::Get()->AddCallbacks([this]() {return this->Update(); });
+	moduleManager->updateCallback.AddCallback([this]() {return this->Update(); });
+	moduleManager->initCallback.AddCallback([this]() {return this->Init(); });
+	moduleManager->updatePhysicCallback.AddCallback([this]() {return this->PhysicUpdate(); });
+	moduleManager->renderCallback.AddCallback([this]() {return this->Render(); });
 }
-
 
 TestSystem::~TestSystem() { }
 
@@ -19,12 +21,12 @@ void TestSystem::Init()
 
 void TestSystem::Update()
 {
-	log::Log("TestSytem : Update");
+	log::Log("TestSytem : Update  |||||||||||||||");
 }
 
 void TestSystem::PhysicUpdate()
 {
-	log::Log("TestSytem : PhysicUpdate");
+	log::Log("TestSytem : PhysicUpdate ===============");
 }
 
 void TestSystem::Render()

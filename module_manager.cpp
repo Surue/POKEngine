@@ -1,36 +1,32 @@
 #include "module_manager.h"
 
 #include "test_system.h"
-#include "singleton.h"
 
 namespace poke
 {
-ModuleManager::ModuleManager()
-{
-	
-}
+ModuleManager::ModuleManager(): testSystem_(this) { }
 
 
 ModuleManager::~ModuleManager() { }
 
 void ModuleManager::Init()
 {
-	testSystem_.Init();
+	initCallback.RegisterCallbacks();
 }
 
 void ModuleManager::Update()
 {
-	Singleton::Get()->Update();
+	updateCallback.RegisterCallbacks();
 }
 
 void ModuleManager::PhysicUpdate()
 {
-	testSystem_.PhysicUpdate();
+	updatePhysicCallback.RegisterCallbacks();
 }
 
 void ModuleManager::Render()
 {
-	testSystem_.Render();
+	renderCallback.RegisterCallbacks();
 }
 
 void ModuleManager::Destroy()
