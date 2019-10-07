@@ -115,20 +115,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="callback.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="module_manager.cpp" />
-    <ClCompile Include="singleton.cpp" />
     <ClCompile Include="test_system.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="callback.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="module_manager.h" />
-    <ClInclude Include="singleton.h" />
     <ClInclude Include="test_system.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,39 +4,10 @@
 #include "test_system.h"
 #include <iostream>
 #include <vector>
+#include "callback.h"
 
 namespace poke
 {
-using UpdateCallback = std::function<void()>;
-using UpdatePhysicCallback = std::function<void()>;
-using RenderCallback = std::function<void()>;
-using InitCallback = std::function<void()>;
-
-template<typename T>
-class Callback
-{
-public:
-	Callback() = default;;
-	
-	void AddCallback(const T& cb)
-	{
-		callback_ = cb;
-	}
-
-	void RegisterCallbacks() const
-	{
-		if (callback_)
-		{
-			std::cout << "Call callback\n";
-			callback_();
-		}
-	}
-
-private:
-	
-	T callback_;
-};
-
 /**
  * \brief function managing all engine's module. It's called by the engine from the run function
  */
@@ -69,12 +40,13 @@ public:
 		return testSystem_;
 	}
 
-	Callback<InitCallback> initCallback;
-	Callback<UpdateCallback> updateCallback;
-	Callback<UpdatePhysicCallback> updatePhysicCallback;
-	Callback<RenderCallback> renderCallback;
+	Callback<VoidCallback> initCallback;
+	Callback<VoidCallback> updateCallback;
+	Callback<VoidCallback> updatePhysicCallback;
+	Callback<VoidCallback> renderCallback;
 private:
 	TestSystem testSystem_;
+	TestSystem testSystem2_;
 
 };
 } //poke

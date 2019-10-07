@@ -10,6 +10,8 @@ TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
 	moduleManager->initCallback.AddCallback([this]() {return this->Init(); });
 	moduleManager->updatePhysicCallback.AddCallback([this]() {return this->PhysicUpdate(); });
 	moduleManager->renderCallback.AddCallback([this]() {return this->Render(); });
+
+	moduleManager->updateCallback.RemoveCallback([this]() {return this->Update(); });
 }
 
 TestSystem::~TestSystem() { }

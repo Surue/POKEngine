@@ -14,5 +14,7 @@ public:
 	void PhysicUpdate() override;
 	void Render() override;
 	void Destroy() override;
+private:
+	int testValue_ = 0;
 };
 }
