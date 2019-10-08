@@ -9,7 +9,9 @@ class Time
 {
 public:
 	friend class Engine;
+	
 	Time(Time& t) = delete;
+	~Time() = default;
 
 	static Time& Get()
 	{
@@ -17,23 +19,37 @@ public:
 		return instance;
 	}
 
+	/**
+	 * \brief Time to complete last frame in milliseconds
+	 */
 	std::chrono::duration<double, std::milli> deltaTime{};
 
+	float GetTime() const;
 private:
 	Time() = default;
 	
 	std::chrono::steady_clock::time_point startFrame_;
 	std::chrono::steady_clock::time_point endFrame_;
 
-	void StartFrame()
-	{
-		startFrame_ = std::chrono::high_resolution_clock::now();
-	}
+	std::chrono::steady_clock::time_point startTime_;
+	
+	/**
+	 * \brief Called a the start of the frame. Used to compute deltaTime. Used to compute deltaTime
+	 */
+	void StartFrame();
 
-	void EndFrame()
-	{
-		endFrame_ = std::chrono::high_resolution_clock::now();
-		deltaTime = endFrame_ - startFrame_;
-	}
+	/**
+	 * \brief Called a the end of a frame then compute delta time. Used to compute deltaTime
+	 */
+	void EndFrame();
+
+	/**
+	 * \brief Can be called during a frame to get the time from the start of the frame to now
+	 * \return the time elapsed in milliseconds
+	 */
+	float GetFrameElapsedTime() const;
+
+	void StartRecordingTime();
+
 };
 } //namespace poke

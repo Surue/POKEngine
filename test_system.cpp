@@ -12,8 +12,6 @@ TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
 	moduleManager->initCallback.AddCallback([this]() {return this->Init(); });
 	moduleManager->updatePhysicCallback.AddCallback([this]() {return this->PhysicUpdate(); });
 	moduleManager->renderCallback.AddCallback([this]() {return this->Render(); });
-
-	moduleManager->updateCallback.RemoveCallback([this]() {return this->Update(); });
 }
 
 TestSystem::~TestSystem() { }
@@ -26,7 +24,8 @@ void TestSystem::Init()
 void TestSystem::Update()
 {
 	log::Log("TestSytem : Update  |||||||||||||||");
-	std::cout << Time::Get().deltaTime.count();
+	std::cout << "dt   = " << Time::Get().deltaTime.count() << "\n";
+	std::cout << "time = " << Time::Get().GetTime() << "\n";
 }
 
 void TestSystem::PhysicUpdate()

@@ -11,6 +11,7 @@ namespace poke
 Engine::Engine()
 {
 	log::Log("Engine - Construct");
+	Time::Get().StartRecordingTime();
 }
 
 Engine& Engine::Get()
@@ -67,7 +68,10 @@ void Engine::Run()
 
 		mainThread_.clear();
 		drawThread_.clear();
-		Sleep((1.0f * 1000) / 60.0f);
+
+		const auto elapsedTime = Time::Get().GetFrameElapsedTime();
+		
+		Sleep(1.0 * 1000.0 / 60.0 - elapsedTime);
 		Time::Get().EndFrame();
 		log::Clear();
 	}
