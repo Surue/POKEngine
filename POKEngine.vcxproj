@@ -123,6 +123,7 @@
     <ClCompile Include="module_manager.cpp" />
     <ClCompile Include="test_system.cpp" />
     <ClCompile Include="time.cpp" />
+    <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="callback.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="module_manager.h" />
     <ClInclude Include="test_system.h" />
     <ClInclude Include="time.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

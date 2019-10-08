@@ -5,6 +5,7 @@
 #include "Log.h"
 #include "windows.h" 
 #include "time.h"
+#include "timer.h"
 
 namespace poke
 {
@@ -36,11 +37,12 @@ void Engine::Run()
 	log::Log("Engine Run()");
 
 	int iteration = 0; //TODO enlever ça
-	const int maxIteration = 1000;
 
 	isRunning_ = true;
 
-	while (isRunning_)
+	Timer timer = Timer(100);
+	
+	while (!timer.IsOver())
 	{
 		Time::Get().StartFrame();
 		log::Log("i = " + std::to_string(iteration));
@@ -57,10 +59,6 @@ void Engine::Run()
 		drawThread_.emplace_back(&ModuleManager::Render, moduleManager_);
 
 		iteration++;
-		if (iteration >= maxIteration)
-		{
-			isRunning_ = false;
-		}
 
 		//Wait end of frame
 		for (auto& th : mainThread_) th.join();
@@ -70,8 +68,9 @@ void Engine::Run()
 		drawThread_.clear();
 
 		const auto elapsedTime = Time::Get().GetFrameElapsedTime();
+		if(elapsedTime < 1.0 * 1000.0 / 60.0)
+			Sleep(1.0 * 1000.0 / 60.0 - elapsedTime);
 		
-		Sleep(1.0 * 1000.0 / 60.0 - elapsedTime);
 		Time::Get().EndFrame();
 		log::Clear();
 	}

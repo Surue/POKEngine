@@ -26,6 +26,11 @@ void TestSystem::Update()
 	log::Log("TestSytem : Update  |||||||||||||||");
 	std::cout << "dt   = " << Time::Get().deltaTime.count() << "\n";
 	std::cout << "time = " << Time::Get().GetTime() << "\n";
+
+	if(timer_.IsOver())
+	{
+		std::cout << "OVER\n";
+	}
 }
 
 void TestSystem::PhysicUpdate()

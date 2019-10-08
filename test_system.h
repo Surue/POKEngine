@@ -1,5 +1,6 @@
 #pragma once
 #include "Module.h"
+#include "timer.h"
 
 namespace poke
 {
@@ -16,5 +17,7 @@ public:
 	void Destroy() override;
 private:
 	int testValue_ = 0;
+
+	Timer timer_ = Timer(10, true);
 };
 }
