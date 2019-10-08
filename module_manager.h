@@ -1,10 +1,9 @@
 #pragma once
-#include <functional>
 
 #include "test_system.h"
-#include <iostream>
-#include <vector>
 #include "callback.h"
+
+class Engine;
 
 namespace poke
 {
@@ -45,8 +44,7 @@ public:
 	Callback<VoidCallback> updatePhysicCallback;
 	Callback<VoidCallback> renderCallback;
 private:
-	TestSystem testSystem_;
-	TestSystem testSystem2_;
+	TestSystem testSystem_; //TODO store inside a vector
 
 };
 } //poke

@@ -1,5 +1,10 @@
 #include "engine.h"
+
+#include <thread>
+
 #include "Log.h"
+#include "windows.h" 
+#include "time.h"
 
 namespace poke
 {
@@ -10,9 +15,11 @@ Engine::Engine()
 
 Engine& Engine::Get()
 {
-	static auto instance = std::make_unique<Engine>();
-	return *instance;
+	static Engine instance;
+	return instance;
 }
+
+Engine::~Engine() {}
 
 void Engine::Init()
 {
@@ -34,6 +41,7 @@ void Engine::Run()
 
 	while (isRunning_)
 	{
+		Time::Get().StartFrame();
 		log::Log("i = " + std::to_string(iteration));
 
 		log::Log("Get Inputs");
@@ -59,6 +67,8 @@ void Engine::Run()
 
 		mainThread_.clear();
 		drawThread_.clear();
+		Sleep((1.0f * 1000) / 60.0f);
+		Time::Get().EndFrame();
 		log::Clear();
 	}
 

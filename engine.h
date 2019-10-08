@@ -6,7 +6,6 @@
 #include "module_manager.h"
 #include <vector>
 
-
 namespace poke
 {
 /**
@@ -15,9 +14,8 @@ namespace poke
 class Engine
 {
 public:
-	Engine();
 	static Engine& Get();
-	~Engine() = default;
+	~Engine();
 
 	/**
 	 * \brief Called once to initialize the engine and cores module
@@ -42,7 +40,9 @@ public:
 	//Getters
 	ModuleManager& GetModuleManager();
 private:
-	
+	Engine();
+
+	//Threads
 	std::vector<std::thread> mainThread_;
 	std::vector<std::thread> drawThread_;
 	bool isRunning_{};

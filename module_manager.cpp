@@ -4,7 +4,7 @@
 
 namespace poke
 {
-ModuleManager::ModuleManager(): testSystem_(this), testSystem2_(this) { }
+ModuleManager::ModuleManager(): testSystem_(this) { }
 
 
 ModuleManager::~ModuleManager() { }

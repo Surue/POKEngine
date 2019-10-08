@@ -1,8 +1,8 @@
 #include "test_system.h"
+
 #include "Log.h"
 #include "engine.h"
-
-#include "cassert.h"
+#include "time.h"
 
 namespace poke
 {
@@ -14,10 +14,6 @@ TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
 	moduleManager->renderCallback.AddCallback([this]() {return this->Render(); });
 
 	moduleManager->updateCallback.RemoveCallback([this]() {return this->Update(); });
-
-	int a = 0, b = 1;
-
-	cassert(a > b, "A is inferior to be");
 }
 
 TestSystem::~TestSystem() { }
@@ -30,6 +26,7 @@ void TestSystem::Init()
 void TestSystem::Update()
 {
 	log::Log("TestSytem : Update  |||||||||||||||");
+	std::cout << Time::Get().deltaTime.count();
 }
 
 void TestSystem::PhysicUpdate()
