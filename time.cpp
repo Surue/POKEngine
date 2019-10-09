@@ -23,6 +23,12 @@ void poke::Time::StartRecordingTime()
 	startTime_ = std::chrono::high_resolution_clock::now();
 }
 
+poke::Time& poke::Time::Get()
+{
+	static Time instance;
+	return instance;
+}
+
 float poke::Time::GetTime() const
 {
 	const std::chrono::duration<double> elapsedTime = std::chrono::high_resolution_clock::now() -

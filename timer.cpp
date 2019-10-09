@@ -9,8 +9,6 @@ Timer::Timer(const double durationInS, const bool repeat) :
 	startTime_ = std::chrono::high_resolution_clock::now();
 }
 
-Timer::~Timer() = default;
-
 bool Timer::IsOver()
 {
 	const auto now = std::chrono::high_resolution_clock::now();

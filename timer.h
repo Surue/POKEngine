@@ -4,6 +4,9 @@
 
 namespace poke
 {
+/**
+ * \brief Used to compute time for a certain duration in seconds. 
+ */
 class Timer
 {
 public:
@@ -12,8 +15,8 @@ public:
 	 * \param durationInS duration of the timer in seconds
 	 * \param repeat indicate if this timer should repeat every time the duration has been covered
 	 */
-	explicit Timer(const double durationInS, bool repeat = false);
-	~Timer();
+	explicit Timer(double durationInS, bool repeat = false);
+	~Timer() = default;
 
 	/**
 	 * \brief if the timer is over return true. If it's not on repeat time it will return true only once 

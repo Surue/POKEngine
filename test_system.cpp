@@ -3,6 +3,7 @@
 #include "Log.h"
 #include "engine.h"
 #include "time.h"
+#include "chrono.h"
 
 namespace poke
 {
@@ -21,12 +22,66 @@ void TestSystem::Init()
 	log::Log("TestSytem : Init");
 }
 
+int Fib(const int n)
+{
+	if(n < 2)
+	{
+		return n;
+	}else
+	{
+		return Fib(n - 1) + Fib(n - 2);
+	}
+}
+
+int Fib2(const int n)
+{
+	std::vector<short> numbers;
+	numbers.resize(n);
+	numbers[0] = 1;
+	numbers[1] = 1;
+
+	for(auto i = 2; i < n; i++)
+	{
+		numbers[i] = numbers[i - 1] + numbers[i - 2];
+	}
+
+	return numbers[n - 1];
+}
+
+int Fib3(const int n)
+{
+	int n1 = 0;
+	int n2 = 1;
+
+	int newValue = 1;
+
+	for (auto i = 2; i < n; i++)
+	{
+		n1 = n2;
+		n2 = newValue;
+		newValue = n2 + n1;
+	}
+
+	return newValue;
+}
+
 void TestSystem::Update()
 {
 	log::Log("TestSytem : Update  |||||||||||||||");
 	std::cout << "dt   = " << Time::Get().deltaTime.count() << "\n";
 	std::cout << "time = " << Time::Get().GetTime() << "\n";
-
+	Chrono chrono = Chrono();
+	std::cout << Fib(20) << "\n";
+	std::cout << chrono.GetTime() << "\n";
+	chrono.Restart();
+	std::cout << Fib2(20) << "\n";
+	std::cout << chrono.GetTime() << "\n";
+	chrono.Restart();
+	std::cout << Fib3(20) << "\n";
+	std::cout << chrono.GetTime() << "\n";
+	chrono.Restart();
+	std::cout << chrono.GetTime();
+	
 	if(timer_.IsOver())
 	{
 		std::cout << "OVER\n";

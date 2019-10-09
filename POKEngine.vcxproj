@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callback.cpp" />
+    <ClCompile Include="chrono.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
@@ -128,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="callback.h" />
     <ClInclude Include="cassert.h" />
+    <ClInclude Include="chrono.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Module.h" />
