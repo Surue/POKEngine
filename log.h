@@ -13,7 +13,7 @@ namespace log
  */
 static void Log(const std::string& s)
 {
-	//std::cout << s << "\n";
+	std::cout << s << "\n";
 }
 /**
  * \brief Clear the console

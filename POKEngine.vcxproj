@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="callback.h" />
+    <ClInclude Include="callbacks_container.h" />
     <ClInclude Include="cassert.h" />
     <ClInclude Include="chrono.h" />
     <ClInclude Include="engine.h" />

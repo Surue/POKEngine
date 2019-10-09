@@ -27,9 +27,11 @@ void Engine::Init()
 {
 	log::Log("Engine Start()");
 
+	moduleManager_ = std::make_unique<ModuleManager>();
+	
 	//Create basics systems
-	moduleManager_.Init();
-	log::Log("Engine Start() =========");
+	callbackContainer_.initCallback.RegisterCallbacks();
+	log::Log("Engine Start()");
 }
 
 void Engine::Run()
@@ -40,7 +42,7 @@ void Engine::Run()
 
 	isRunning_ = true;
 
-	Timer timer = Timer(100);
+	Timer timer = Timer(10);
 	
 	while (!timer.IsOver())
 	{
@@ -50,13 +52,13 @@ void Engine::Run()
 		log::Log("Get Inputs");
 
 		log::Log("PhysicUpdate");
-		mainThread_.emplace_back(&ModuleManager::PhysicUpdate, moduleManager_);
+		mainThread_.emplace_back(&Callback<VoidCallback>::RegisterCallbacks, callbackContainer_.updatePhysicCallback);
 
 		log::Log("Update");
-		mainThread_.emplace_back(&ModuleManager::Update, moduleManager_);
+		mainThread_.emplace_back(&Callback<VoidCallback>::RegisterCallbacks, callbackContainer_.updateCallback);
 
 		log::Log("Render");
-		drawThread_.emplace_back(&ModuleManager::Render, moduleManager_);
+		drawThread_.emplace_back(&Callback<VoidCallback>::RegisterCallbacks, callbackContainer_.renderCallback);
 
 		iteration++;
 
@@ -78,15 +80,23 @@ void Engine::Run()
 	Destroy();
 }
 
-void Engine::ShutDown()
+void Engine::Stop()
 {
 	isRunning_ = false;
 }
 
-void Engine::Destroy() { }
+void Engine::Destroy()
+{
+	callbackContainer_.destroyCallback.RegisterCallbacks();
+}
 
 ModuleManager& Engine::GetModuleManager()
 {
-	return moduleManager_;
+	return *moduleManager_;
+}
+
+CallbackContainer& Engine::GetCallbackContainer()
+{
+	return callbackContainer_;
 }
 }

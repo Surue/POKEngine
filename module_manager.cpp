@@ -1,36 +1,19 @@
 #include "module_manager.h"
 
 #include "test_system.h"
+#include "engine.h"
 
 namespace poke
 {
-ModuleManager::ModuleManager(): testSystem_(this) { }
+ModuleManager::ModuleManager(){ }
 
-
-ModuleManager::~ModuleManager() { }
-
-void ModuleManager::Init()
+ModuleManager& ModuleManager::Get()
 {
-	initCallback.RegisterCallbacks();
+	return Engine::Get().GetModuleManager();
 }
 
-void ModuleManager::Update()
+TestSystem& ModuleManager::GetTestSystem()
 {
-	updateCallback.RegisterCallbacks();
+	return testSystem_;
 }
-
-void ModuleManager::PhysicUpdate()
-{
-	updatePhysicCallback.RegisterCallbacks();
-}
-
-void ModuleManager::Render()
-{
-	renderCallback.RegisterCallbacks();
-}
-
-void ModuleManager::Destroy()
-{
-	testSystem_.Destroy();
-}
-} //poke
+} //namespace poke

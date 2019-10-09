@@ -7,7 +7,7 @@ class ModuleManager;
 class Module
 {
 public:
-	Module(ModuleManager* moduleManager);
+	Module();
 	virtual ~Module() = default;
 
 	/**
@@ -35,6 +35,6 @@ public:
 
 private:
 	//Force module and daughter class to use constructor with module manager
-	Module(){};
+	//Module(){};
 };
 }

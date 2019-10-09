@@ -7,15 +7,14 @@
 
 namespace poke
 {
-TestSystem::TestSystem(ModuleManager* moduleManager) : Module(moduleManager)
+TestSystem::TestSystem()
 {
-	moduleManager->updateCallback.AddCallback([this]() {return this->Update(); });
-	moduleManager->initCallback.AddCallback([this]() {return this->Init(); });
-	moduleManager->updatePhysicCallback.AddCallback([this]() {return this->PhysicUpdate(); });
-	moduleManager->renderCallback.AddCallback([this]() {return this->Render(); });
+	Engine::Get().GetCallbackContainer().updateCallback.AddCallback([this]() {return this->Update(); });
+	Engine::Get().GetCallbackContainer().initCallback.AddCallback([this]() {return this->Init(); });
+	Engine::Get().GetCallbackContainer().updatePhysicCallback.AddCallback([this]() {return this->PhysicUpdate(); });
+	Engine::Get().GetCallbackContainer().renderCallback.AddCallback([this]() {return this->Render(); });
+	Engine::Get().GetCallbackContainer().destroyCallback.AddCallback([this]() {return this->Destroy(); });
 }
-
-TestSystem::~TestSystem() { }
 
 void TestSystem::Init()
 {
@@ -27,10 +26,8 @@ int Fib(const int n)
 	if(n < 2)
 	{
 		return n;
-	}else
-	{
-		return Fib(n - 1) + Fib(n - 2);
 	}
+	return Fib(n - 1) + Fib(n - 2);
 }
 
 int Fib2(const int n)

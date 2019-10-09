@@ -7,8 +7,8 @@ namespace poke
 class TestSystem : public Module
 {
 public:
-	TestSystem(ModuleManager* moduleManager);
-	~TestSystem();
+	TestSystem();
+	~TestSystem() = default;
 
 	void Init() override;
 	void Update() override;

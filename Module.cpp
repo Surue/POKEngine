@@ -5,7 +5,7 @@
 
 namespace poke
 {
-Module::Module(ModuleManager* moduleManager)
+Module::Module()
 {
 	
 }

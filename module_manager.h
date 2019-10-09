@@ -3,8 +3,6 @@
 #include "test_system.h"
 #include "callback.h"
 
-class Engine;
-
 namespace poke
 {
 /**
@@ -14,37 +12,12 @@ class ModuleManager
 {
 public:
 	ModuleManager();
-	~ModuleManager();
+	~ModuleManager() = default;
 
-	void Init();
-	/**
-	 * \brief Called every frame for game logic
-	 */
-	void Update();
-	/**
-	 * \brief Called every frame at a constant frame rate for the physic
-	 */
-	void PhysicUpdate();
-	/**
-	 * \brief Part of the program that draw every thing on the screen
-	 */
-	void Render();
-	/**
-	 * \brief Called at the end of the program to destroy 
-	 */
-	void Destroy();
-
-	TestSystem& GetTestSystem()
-	{
-		return testSystem_;
-	}
-
-	Callback<VoidCallback> initCallback;
-	Callback<VoidCallback> updateCallback;
-	Callback<VoidCallback> updatePhysicCallback;
-	Callback<VoidCallback> renderCallback;
+	static ModuleManager& Get();
+	
+	TestSystem& GetTestSystem();
 private:
-	TestSystem testSystem_; //TODO store inside a vector
-
+	TestSystem testSystem_;
 };
 } //poke
