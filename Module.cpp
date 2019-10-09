@@ -1,7 +1,5 @@
 #include "Module.h"
 #include <iostream>
-#include "module_manager.h"
-
 
 namespace poke
 {
@@ -10,9 +8,13 @@ Module::Module()
 	
 }
 
-
-void Module::Test()
+Module& Module::operator=(Module)
 {
-	std::cout << "test\n";
+	return *this;
+}
+
+Module& Module::operator=(Module&&) noexcept
+{
+	return *this;
 }
 }

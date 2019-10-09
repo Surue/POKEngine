@@ -23,11 +23,21 @@ Engine& Engine::Get()
 
 Engine::~Engine() {}
 
+Engine& Engine::operator=(Engine)
+{
+	return Get();
+}
+
+Engine& Engine::operator=(Engine&&) noexcept
+{
+	return Get();
+}
+
 void Engine::Init()
 {
 	log::Log("Engine Start()");
 
-	moduleManager_ = std::make_unique<ModuleManager>();
+	moduleManager_ = std::make_unique<ModuleContainer>();
 	
 	//Create basics systems
 	callbackContainer_.initCallback.RegisterCallbacks();
@@ -90,7 +100,7 @@ void Engine::Destroy()
 	callbackContainer_.destroyCallback.RegisterCallbacks();
 }
 
-ModuleManager& Engine::GetModuleManager()
+ModuleContainer& Engine::GetModuleManager()
 {
 	return *moduleManager_;
 }

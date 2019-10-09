@@ -2,7 +2,7 @@
 
 namespace poke
 {
-class ModuleContainer;
+struct ModuleContainer;
 
 class Module
 {

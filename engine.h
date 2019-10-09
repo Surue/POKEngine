@@ -1,10 +1,9 @@
 #pragma once
 
-
+#include <vector>
 #include <thread>
 
-#include "module_manager.h"
-#include <vector>
+#include "module_container.h"
 #include "callbacks_container.h"
 
 namespace poke
@@ -16,12 +15,16 @@ class Engine
 {
 public:
 	static Engine& Get();
-	Engine(Engine&) = delete;
-	Engine(Engine*) = delete;
 	~Engine();
 
+	//Create true singleton
+	Engine(Engine&) = delete;
+	Engine(Engine&&) = delete;
+	Engine& operator = (Engine);
+	Engine& operator = (Engine&&) noexcept;
+
 	/**
-	 * \brief Called once to initialize the engine and cores module
+	 * \brief Called once to initialize the engine and cores module. Everything before this points expect the engine doesn't exist
 	 */
 	void Init();
 	/**
@@ -38,8 +41,13 @@ public:
 	void Destroy();
 
 	//Getters
-	ModuleManager& GetModuleManager();
-	
+	/**
+	 * \brief Get module manager
+	 */
+	ModuleContainer& GetModuleManager();
+	/**
+	 * \brief Get callback container 
+	 */
 	CallbackContainer& GetCallbackContainer();
 
 private:
@@ -53,7 +61,7 @@ private:
 	//Running values
 	bool isRunning_{};
 
-	std::unique_ptr<ModuleManager> moduleManager_;
+	std::unique_ptr<ModuleContainer> moduleManager_;
 
 	CallbackContainer callbackContainer_;
 };
